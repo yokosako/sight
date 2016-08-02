@@ -1,14 +1,12 @@
-#pragma comment(lib, "opencv_core2411d.lib")
-#pragma comment(lib, "opencv_highgui2411d.lib")
-
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 
 struct point_t {
-	cv::Point pt0;	// n“_
-	cv::Point pt1;	// I“_
+	cv::Point pt0;	// å§‹ç‚¹
+	cv::Point pt1;	// çµ‚ç‚¹
 };
 
 
@@ -16,30 +14,30 @@ int main() {
 	point_t horizon;
 	point_t vertical;
 
-	// ‰æ‘œ“Ç‚İ‚İ
-	cv::Mat img = cv::imread("DSC_4671.TIF");
+	// ç”»åƒèª­ã¿è¾¼ã¿
+	cv::Mat img = cv::imread("yokosako.JPG");
 	
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚Ìî•ñ•\¦iwidth, hightj
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã®æƒ…å ±è¡¨ç¤ºï¼ˆwidth, hightï¼‰
 	std::cout << "Hight : " << img.rows << "[px]" << std::endl;
 	std::cout << "Width : " << img.cols << "[px]" << std::endl;
 
-	// ‰æ‘œ…•½ü‚Ìƒ|ƒCƒ“ƒg
+	// ç”»åƒæ°´å¹³ç·šã®ãƒã‚¤ãƒ³ãƒˆ
 	horizon.pt0 = cv::Point(0, img.rows / 2);
 	horizon.pt1 = cv::Point(img.cols, img.rows / 2);
 	
-	// ‰æ‘œ‚’¼ü‚Ìƒ|ƒCƒ“ƒg
+	// ç”»åƒå‚ç›´ç·šã®ãƒã‚¤ãƒ³ãƒˆ
 	vertical.pt0 = cv::Point(img.cols / 2, 0);
 	vertical.pt1 = cv::Point(img.cols / 2, img.rows);
 
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚É’†‰›ü‚ğˆø‚­
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã«ä¸­å¤®ç·šã‚’å¼•ã
 	cv::line(img, horizon.pt0, horizon.pt1, cv::Scalar(0, 0, 255));
 	cv::line(img, vertical.pt0, vertical.pt1, cv::Scalar(0, 255, 0));
 
-	// ‰æ‘œ’Šo
-	cv::Mat cutImg(img, cv::Rect(3080, 2056, 1200, 800));
+	// ç”»åƒæŠ½å‡º
+	//	cv::Mat cutImg(img, cv::Rect(3080, 2056, 1200, 800));
 
-	// ’Šo‰æ‘œ•\¦
-	cv::imshow("Sight", cutImg);
+	// æŠ½å‡ºç”»åƒè¡¨ç¤º
+	cv::imshow("Sight", img);
 
 
 	cv::waitKey(0);
